@@ -9,21 +9,28 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
     <script src="./general.js"></script>
-    <script defer src="./index.js"></script>
-
+    <script defer src="./carrito.js"></script>
 </head>
 
 <body>
     <header>
-        <a href="./carrito.html"><img src="./carrito.jpg"  class="imgcarrito" alt="Carrito de Compras"></a>
+        <a href="/index.html"><img class="imgvolver" src="volver.png" alt="Volver"></a>
         <h1 class="titulo">Allegro - Instrumentos Musicales</h1>
-        <h2 class="subtitulo">El mejor sonido, a tu alcance</h2>
+        <h2 class="subtitulo">Carrito de Compras</h2>
     </header>
 
     <main>
-        <input type="search" id="buscador" placeholder="🔎 Ingresa el nombre del instrumento">
-        <div class="container" id="container">
-        </div>
+        <table class="tabla">
+            <thead>
+                <th>Descripción</th>
+                <th>Importe</th>
+            <thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+        <button class="vaciarcarrito">Vaciar Carrito</button>
     </main>
 </body>
 </html>

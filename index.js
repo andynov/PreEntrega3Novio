@@ -1,68 +1,38 @@
-const instrumentos = [{imagen: "🎸", nombre: "Fender", precio: 115000},
-                      {imagen: "🎸", nombre: "Gibson", precio: 130000},                      
-                      {imagen: "🎸", nombre: "Ibanez", precio: 100000},
-                      {imagen: "🎺", nombre: "trompeta", precio: 250000},
-                      {imagen: "🪕", nombre: "banjo", precio: 170000},
-                      {imagen: "🎷", nombre: "saxo", precio: 160000},
-                      {imagen: "🎷", nombre: "clarinete", precio: 200000},
-                      {imagen: "🎷", nombre: "oboe", precio: 250000}]
+const container = document.querySelector("div#container.container")
 
-
-function filtrarInstrumento(nom) { 
-    let resultado = instrumentos.filter ((instrumento) => instrumento.nombre.toLowerCase().includes(nom.toLowerCase()));
-    return resultado;
+function retornarCard(instrumento){
+    return `<div class="card">
+                <h3>${instrumento.nombre}</h3>
+                <h4>$${instrumento.precio}</h4>
+                <button class="btn-agregar" id="${instrumento.nombre}">Agregar al carrito</button>
+                </div>`
 }
 
-function consultarInstrumento() {
-    let nom = prompt("Ingrese el nombre del instrumento del listado por el que desea hacer su consulta:");
-    let instrumentoSeleccionado = filtrarInstrumento(nom)
-    if (instrumentoSeleccionado.length === 0) {
-        alert("🛑 No hemos encontrado coincidencia con su respuesta: " + nom.toUpperCase() + ". Por favor, vuelva a intentar.");
+function cargarInstrumentos(array){
+    container.innerHTML = ""
+    array.forEach((instrumento)=> {
+    container.innerHTML += retornarCard(instrumento) 
     }
-    else {
-        console.table(instrumentoSeleccionado)
-    }
+    )
+    agregarCarritoClick()
 }
 
-const carrito = []
+cargarInstrumentos(instrumentos)
 
-class Compra {
-    constructor(carritoDeCompras) {
-        this.carrito = carritoDeCompras;    
-    }
-    
-    obtenerPrecioTotal() {
-        if (this.carrito.length > 0) {
-            return this.carrito.reduce((acc, instrumento) => acc + instrumento.precio, 0);
-        }
-    }
-}
+const buscador = document.querySelector("input#buscador")
 
-function buscarInstrumento(nom) {
-    let resultado = instrumentos.find ((instrumento) => instrumento.nombre.toLowerCase() === (nom.toLowerCase()));
-    return resultado;
-}
+buscador.addEventListener("search", () => {
+        const resultado = instrumentos.filter((instrumento) => instrumento.nombre.toUpperCase().includes(buscador.value.toUpperCase()))
+        cargarInstrumentos(resultado)
+} )
 
-function terminarCompra() {
-    const carritolleno = new Compra(carrito)
-    console.log("Muchas gracias por su compra. El precio total es: $" + carritolleno.obtenerPrecioTotal())
-}
-
-function realizarCompra() {
-    let nom = prompt("Ingrese el nombre del instrumento que desea comprar:");
-    let instrumentoElegido = buscarInstrumento(nom);
-        if (instrumentoElegido !== undefined) {
-            carrito.push(instrumentoElegido);
-            alert("Se ha agregado existosamente " + nom.toUpperCase() + " a tu carrito.");
-            let respuesta = confirm("¿Deseas agregar otro producto?");
-                if (respuesta === true) {
-                    realizarCompra()
-                }
-                else {
-                terminarCompra()
-                }
-        }
-        else {
-            alert("🛑 No entendimos tu respuesta: " + nom.toUpperCase() + ". Por favor, vuelve a intentar.");
-        }
+function agregarCarritoClick(){
+    const buttons = document.querySelectorAll("button.btn-agregar")
+    buttons.forEach((boton) => {
+        boton.addEventListener("click", () =>{
+            let resultado = instrumentos.find((instrumento) => boton.id === instrumento.nombre)
+            carrito.push(resultado)
+            localStorage.setItem("carrito", JSON.stringify(carrito))
+        })
+    })
 }

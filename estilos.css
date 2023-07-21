@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+
+.imgcarrito, .imgvolver {
+
+    float: right;
+    height: 50px;
+    background-color: white;
+}
+
+.titulo, .subtitulo{
+    font-family: "Jost";
+    text-align: center;
+}
+
+.container{
+    margin-top: 20px;
+}
+
+.card {
+    border: orange solid 2px;
+    display: inline-block;
+    padding: 10px;
+    text-align: center;
+    margin: 10px;
+    font-family: "Raleway", sans-serif;
+}
+
+.card:hover {
+    background-color: rgb(247, 229, 149);
+}
+
+.card .btn-agregar {
+    border-radius: 10px;
+    border: solid 1px green;
+    background-color: rgb(11, 80, 11);
+    height: 30px;
+    font-family: "Jost";
+    color: white;
+}
+
+.btn-agregar:hover{
+    background-color: rgb(95, 129, 95);
+    cursor: pointer;
+}
+
+#buscador {
+    display: block;
+    margin-bottom: 15px;
+    margin: 0 auto;
+    height: 30px;
+    width: 300px;
+    border: 1px solid;
+}
+
+#buscador::placeholder{
+    color: rgb(150, 150, 150);
+    text-align: center;
+    font-family: sans-serif;
+}
+
+.tabla {
+    margin: 20px;
+    margin-top: 30px;
+    width: 90%;
+    border: solid 3px rgb(162, 162, 184)
+}
+ td {
+    font-family: "Roboto";
+    text-align: center;
+    height: 50px;
+    
+ }
+
+ th {
+    font-family: "Raleway";
+    height: 50px;
+ }
+
+ .vaciarcarrito{
+    background-color: rgb(23, 78, 23);
+    font-family: "Jost";
+    color:white;
+    border: none;
+    height: 40px;
+    margin-top: 50px;
+    margin-left: 20px;
+ }
+
+ .vaciarcarrito:hover{
+    cursor: pointer;
+ }
