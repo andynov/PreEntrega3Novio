@@ -91,3 +91,15 @@
  .vaciarcarrito:hover{
     cursor: pointer;
  }
+
+ .btn-quitar:hover{
+    cursor: pointer;
+ }
+
+ tbody tr:nth-child(even){
+    background-color: rgba(224, 221, 221, 0.658);
+ }
+
+ tbody tr:nth-child(odd){
+    background-color: white;
+ }
