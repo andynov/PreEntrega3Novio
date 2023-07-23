@@ -1,4 +1,5 @@
 const tbody = document.querySelector("tbody")
+let textototal  = document.querySelector("h4.total-carrito")
 
 function tomarDatosTabla(instrumento){
     return `</tbody>
@@ -18,19 +19,17 @@ function agregarDatosCarrito(){
         })
     }
     quitarElementoCarrito()
+    sumarTotalCarrito(carrito)
 }
-
-agregarDatosCarrito()
 
 function vaciarCarrito(){
     const botonvaciar = document.querySelector("button.vaciarcarrito")
     botonvaciar.addEventListener("click", ()=>{
         tbody.innerHTML = ""
         localStorage.removeItem("carrito")
+        textototal.innerHTML= `El total del carrito es: $${0}`
     })
 }
-
-vaciarCarrito()
 
 function quitarElementoCarrito(){
     const botonquitar = document.querySelectorAll("button.btn-quitar")
@@ -45,3 +44,15 @@ function quitarElementoCarrito(){
     })
 }
 
+function sumarTotalCarrito(carrito){
+    if (carrito.length > 0){
+        let totalCarrito = carrito.reduce((acc, carrito)=> acc + carrito.precio, 0)
+        textototal.textContent = "El total del carrito es: $" + totalCarrito.toLocaleString()
+    }
+    else{
+        textototal.textContent = "El total del carrito es: $0"
+    }
+}
+
+agregarDatosCarrito()
+vaciarCarrito()

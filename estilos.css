@@ -103,3 +103,9 @@
  tbody tr:nth-child(odd){
     background-color: white;
  }
+
+ .total-carrito{
+    font-family: "Raleway";
+    margin-left: 20px;
+    font-size: 20px;
+ }
