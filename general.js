@@ -18,3 +18,19 @@ function tomarCarrito(){
 }
 
 const carrito = tomarCarrito()
+
+function toast(mensaje){
+    Toastify({
+    text: mensaje,
+    duration: 3000,
+    newWindow: true,
+    close: true,
+    gravity: "top",
+    position: "right",
+    stopOnFocus: true,
+    style: {
+    background: "blue",
+    },
+    className: "toastify"
+  }).showToast();
+}

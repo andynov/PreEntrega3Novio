@@ -33,6 +33,7 @@ function agregarCarritoClick(){
             let resultado = instrumentos.find((instrumento) => boton.id === instrumento.nombre)
             carrito.push(resultado)
             localStorage.setItem("carrito", JSON.stringify(carrito))
+            toast("✔ Has agregado 1 item al carrito")
         })
     })
 }
