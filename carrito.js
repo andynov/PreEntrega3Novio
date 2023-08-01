@@ -70,17 +70,18 @@ function comprar(){
                 if (result.isConfirmed) {
                     tbody.innerHTML = ""
                     localStorage.removeItem("carrito")
-                    textototal.innerHTML= `El total del carrito es: $${0}`
+                    carrito = [];
+                    textototal.textContent = "El total del carrito es: $0";
                     Swal.fire(
                     'Tu compra ha sido confirmada',
-                    'A partir de mañana podrás retirarla en nuestro local',
+                    'A partir del próximo día hábil podrás retirarla en nuestro local',
                     'success'
             )}
 })}     else {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'Su carrito está vacío. Ingrese instrumentos e intente nuevamente',
+                text: 'Su carrito está vacío. Agregue los instrumentos e inténtelo nuevamente',
          })}
     })
 }

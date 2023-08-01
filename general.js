@@ -10,12 +10,12 @@ function tomarCarrito(){
     }
 }
 
-const carrito = tomarCarrito()
+let carrito = tomarCarrito()
 
 function toast(mensaje){
     Toastify({
     text: mensaje,
-    duration: 3000,
+    duration: 1000,
     newWindow: true,
     close: true,
     gravity: "top",
