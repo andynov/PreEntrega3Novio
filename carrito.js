@@ -1,5 +1,6 @@
 const tbody = document.querySelector("tbody")
 let textototal  = document.querySelector("h4.total-carrito")
+const btncomprar = document.querySelector("button.btn-comprar")
 
 function tomarDatosTabla(instrumento){
     return `</tbody>
@@ -54,5 +55,36 @@ function sumarTotalCarrito(carrito){
     }
 }
 
+function comprar(){
+    btncomprar.addEventListener("click", ()=>{
+        if (carrito.length > 0) {
+            Swal.fire({
+                title: '¿Deseas confirmar la compra?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'CONFIRMAR',
+                cancelButtonText: 'CANCELAR'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    tbody.innerHTML = ""
+                    localStorage.removeItem("carrito")
+                    textototal.innerHTML= `El total del carrito es: $${0}`
+                    Swal.fire(
+                    'Tu compra ha sido confirmada',
+                    'A partir de mañana podrás retirarla en nuestro local',
+                    'success'
+            )}
+})}     else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Su carrito está vacío. Ingrese instrumentos e intente nuevamente',
+         })}
+    })
+}
+
 agregarDatosCarrito()
 vaciarCarrito()
+comprar()

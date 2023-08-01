@@ -1,4 +1,6 @@
 const container = document.querySelector("div#container.container")
+const buscador = document.querySelector("input#buscador")
+const URL = "./instrumentos.json"
 
 function retornarCard(instrumento){
     return `<div class="card">
@@ -17,10 +19,6 @@ function cargarInstrumentos(array){
     agregarCarritoClick()
 }
 
-cargarInstrumentos(instrumentos)
-
-const buscador = document.querySelector("input#buscador")
-
 buscador.addEventListener("search", () => {
         const resultado = instrumentos.filter((instrumento) => instrumento.nombre.toUpperCase().includes(buscador.value.toUpperCase()))
         cargarInstrumentos(resultado)
@@ -37,3 +35,12 @@ function agregarCarritoClick(){
         })
     })
 }
+
+function obtenerInstrumentos(){
+    fetch(URL)
+    .then((response)=> response.json())
+    .then((data)=> instrumentos.push(...data))
+    .then(()=> cargarInstrumentos(instrumentos))
+}
+
+obtenerInstrumentos()
