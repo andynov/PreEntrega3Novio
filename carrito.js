@@ -26,9 +26,18 @@ function agregarDatosCarrito(){
 function vaciarCarrito(){
     const botonvaciar = document.querySelector("button.vaciarcarrito")
     botonvaciar.addEventListener("click", ()=>{
-        tbody.innerHTML = ""
-        localStorage.removeItem("carrito")
-        textototal.innerHTML= `El total del carrito es: $${0}`
+        if (carrito.length > 0){
+            tbody.innerHTML = ""
+            localStorage.removeItem("carrito")
+            carrito = []
+            textototal.textContent = "El total del carrito es: $0"
+            }
+        else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Orquesta sin instrumentos',
+                text: 'Su carrito ya se encuentra vacío. Puede agregar sus instrumentos en la página principal.',
+        })}
     })
 }
 
@@ -70,8 +79,8 @@ function comprar(){
                 if (result.isConfirmed) {
                     tbody.innerHTML = ""
                     localStorage.removeItem("carrito")
-                    carrito = [];
-                    textototal.textContent = "El total del carrito es: $0";
+                    carrito = []
+                    textototal.textContent = "El total del carrito es: $0"
                     Swal.fire(
                     'Tu compra ha sido confirmada',
                     'A partir del próximo día hábil podrás retirarla en nuestro local',
