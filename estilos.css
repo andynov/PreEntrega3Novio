@@ -18,6 +18,16 @@
     margin-top: 20px;
 }
 
+.container .error{
+   font-family: "Raleway";
+   text-align: center;
+   border: solid 4px orangered;
+   margin: 0 auto;
+   width: 80%;
+   
+
+}
+
 .card {
     border: orange solid 2px;
     display: inline-block;

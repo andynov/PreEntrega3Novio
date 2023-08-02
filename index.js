@@ -10,6 +10,13 @@ function retornarCard(instrumento){
                 </div>`
 }
 
+function retornarAvisoError(){
+    return `<div class="error">
+    <h2>🎶🎸En este momento, estamos afinando los instrumentos.🎷🪕</h3>
+    <h3>Te esperamos a la brevedad con toda la orquesta lista.</h2>
+</div>`
+}
+
 function cargarInstrumentos(array){
     container.innerHTML = ""
     array.forEach((instrumento)=> {
@@ -36,11 +43,15 @@ function agregarCarritoClick(){
     })
 }
 
-function obtenerInstrumentos(){
-    fetch(URL)
-    .then((response)=> response.json())
-    .then((data)=> instrumentos.push(...data))
-    .then(()=> cargarInstrumentos(instrumentos))
+async function obtenerInstrumentos(){
+    try {
+        const response = await fetch(URL)
+    const data = await response.json()
+    instrumentos.push(...data)
+    cargarInstrumentos(instrumentos)
+    } catch(error) {
+        container.innerHTML = retornarAvisoError()
+    }
 }
 
 obtenerInstrumentos()
